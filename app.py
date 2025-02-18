@@ -1,7 +1,9 @@
 import os
 from colorama import Fore, Style
-from modolos.restaurante import Restaurante
-restalrentes = Restaurante('Praça', 'Gourme')
+
+restalrentes = [{'nome':'karol cafes', 'categoria':'cafeteria', 'ativo':False},
+                {'nome':'burgerfiel', 'categoria':'haburgeria', 'ativo':True},
+                {'nome':'Cantina', 'categoria':'italiana', 'ativo':False}]
 def exibir_nome_do_programa():
         print(Fore.RED + """
 ░██████╗░█████╗░██████╗░░█████╗░██████╗░  ███████╗██╗░░██╗██████╗░██████╗░███████╗░██████╗░██████╗
@@ -49,14 +51,20 @@ def novo_restalrante():
     subtitulo(texto = 'Cadastro de novos restaurantes')
     nome_do_restaurante = input('Digite o nome do restaurante que deseja cadastrar: ')
     categoria_do_restaurante_cadastro = input(f'qual a cadegoria do restaurante {nome_do_restaurante}: ')
-
-    restaurentes = Restaurante(nome_do_restaurante, categoria_do_restaurante_cadastro)
+    dados_do_restaurantes = {'nome':nome_do_restaurante, 'categoria':categoria_do_restaurante_cadastro, 'ativo':False}
+    restalrentes.append(dados_do_restaurantes)
     print(f'O restaurante "{nome_do_restaurante}" foi cadastrado com sucesso!')
     voltar_menu_principal()
 
 def listar_reatalrante():
     subtitulo(texto = 'Listar Restaurantes')
-    Restaurante.listar_restaurantes()
+    print(f'{'Nome do restaurante'.ljust(22)} | {'Categoria do restaurante'.ljust(20)} | Status')
+    for restaurante in restalrentes:
+        nome_restalrante = restaurante['nome']
+        categoria_restaurante = restaurante['categoria']
+        ativo = 'ativado' if restaurante['ativo'] else 'desativado'
+        print(f'- {nome_restalrante.ljust(20)} | {categoria_restaurante.ljust(20)} | {ativo}')
+
     voltar_menu_principal()
 
 def aterar_estado_do_retaurante():
