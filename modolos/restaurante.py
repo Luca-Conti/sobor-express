@@ -21,8 +21,3 @@ class Restaurante():
 
     def alternar_status(self):
         self._ativo = not self._ativo
-
-    def receber_avaliacao(self, cliente,  nota):
-        if 0 < nota <= 5:
-            avaliacao = Avaliacao(cliente, nota)
-            self._avalicao.append(avaliacao)
